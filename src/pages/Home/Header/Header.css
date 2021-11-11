@@ -1,0 +1,15 @@
+.header{
+    background-image: url('https://template.hasthemes.com/garcia/garcia/assets/images/slider/slider-1.jpg');
+    height: 785px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header-details{
+    padding-top: 284px;
+    padding-left: 250px;
+}
+
+.header-details h1{
+    font-size: 64px;
+}
