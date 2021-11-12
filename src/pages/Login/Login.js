@@ -42,7 +42,7 @@ const Login = () => {
         <div>
             <form className="container shadow p-5 rounded mt-5" onSubmit={handleLoginSubmit}>
                 <div className="m-5">
-                    <h1 className="text-center mb-4">Please <span className="text-danger">Login</span></h1>
+                    <h1 className="text-center mb-4">Please Login</h1>
                     <div className="form-outline-danger mb-4">
                         <input type="email" id="form2Example1" className="form-control" onBlur={handleEmail} required />
                         <label className="form-label" htmlFor="form2Example1">Email address</label>

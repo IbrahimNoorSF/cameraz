@@ -46,7 +46,7 @@ const Register = () => {
         <div>
             <form className="container mt-5 shadow rounded p-5" onSubmit={handleRegistrationSubmit}>
                 <div className="m-5">
-                    <h1 className="text-center mb-4">Please <span className="text-danger">Register</span></h1>
+                    <h1 className="text-center mb-4">Please Register</h1>
                     <div className="col">
                         <div className="form-outline">
                             <input type="text" id="form3Example1" className="form-control" onBlur={handleName} required />

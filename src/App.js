@@ -9,6 +9,8 @@ import Login from './pages/Login/Login';
 import AuthProvider from './Context/AuthProvider';
 import PrivateRoute from './pages/Shared/PrivateRoute/PrivateRoute';
 import Register from './pages/Register/Register';
+import AddProducts from './pages/AddProducts/AddProducts';
+import ContactUs from './pages/ContactUs/ContactUs';
 
 function App() {
   return (
@@ -33,6 +35,12 @@ function App() {
           </Route>
           <Route path="/register">
             <Register></Register>
+          </Route>
+          <Route path="/add-products">
+            <AddProducts></AddProducts>
+          </Route>
+          <Route path="/contact">
+            <ContactUs></ContactUs>
           </Route>
         </Switch>
         <Footer></Footer>
