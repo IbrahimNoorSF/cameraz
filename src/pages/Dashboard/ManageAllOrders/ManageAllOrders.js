@@ -1,54 +1,59 @@
 import React, { useEffect, useState } from 'react';
+import './ManageAllOrders.css';
+import useAuth from '../../../hooks/useAuth';
 
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
+    console.log(orders);
+    const { user } = useAuth();
+    console.log(user);
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://cameraz.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data));
     }, [])
-    const handleConfirmBooking = id => {
-        const confirmBooking = { status: "Confirmed" };
 
-        const url = `http://localhost:5000/orders/${id}`;
+    const handleConfirmOrder = id => {
+        const confirmedOrder = { status: "Confirmed" };
+        console.log(confirmedOrder);
+        const url = `https://cameraz.herokuapp.com/orders/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {
-                'content-type': 'appication/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(confirmBooking)
+            body: JSON.stringify(confirmedOrder)
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modification > 0) {
-                    alert('Service Updated Successfully')
+                    alert('Confirmed Status Updated Successfully')
                 }
                 window.location.reload();
             })
     }
-    // const handleShippedBooking = id => {
-    //     const confirmBooking = { status: "Shipped" };
-
-    //     const url = `http://localhost:5000/orders/${id}`;
-    //     fetch(url, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'content-type': 'appication/json'
-    //         },
-    //         body: JSON.stringify(confirmBooking)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             if (data.modification > 0) {
-    //                 alert('Service Updated Successfully')
-    //             }
-    //             window.location.reload();
-    //         })
-    // }
-    const HandleDelete = id => {
+    const handleConfirmShipping = id => {
+        const confirmedShipping = { status: "Shipped" };
+        const url = `https://cameraz.herokuapp.com/orders/${id}`;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(confirmedShipping)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modification > 0) {
+                    alert('Status Shipping Updated Successfully')
+                }
+                window.location.reload();
+            })
+    }
+    const handleDelete = id => {
         const proceed = window.confirm('Are you sure to delete');
         if (proceed) {
-            const url = `http://localhost:5000/orders/${id}`;
+            const url = `https://cameraz.herokuapp.com/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -64,30 +69,37 @@ const ManageAllOrders = () => {
                 });
         }
     }
-    console.log(orders);
     return (
-        <div>
-            <div className="text-center">
-                <h1>Your <span className="fw-bolder">Orders</span></h1>
-                <small>Orders Found: <span className="fw-bolder">{orders.length}</span></small>
-            </div>
-            <div className="row row-cols-1 row-cols-md-3 g-4 w-75 mx-auto">
-                {
-                    orders.map(myOrder =>
-                        <div className="col" key={myOrder.productId}>
-                            <div className="card h-100">
-                                <img src={myOrder.productImg} className="card-img-top" alt="..." />
-                                <div className="card-body">
-                                    <h3 className="card-title fw-bold">{myOrder.productName}</h3>
-                                    <p className="card-text fs-5">Product Id: {myOrder.productId}</p>
-                                    <p>Status: <span className="p-2 text-black border border-1 rounded">{myOrder.status}</span></p>
-                                    <button className="btn btn-success me-2" onClick={() => handleConfirmBooking(myOrder._id)}>Confirm</button>
-                                    <button className="btn btn-danger" onClick={() => HandleDelete(myOrder._id)}>Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                }
+        <div className="table-orders">
+            <h1 className="mt-5 text-center">All <span className="fw-bolder">Orders</span></h1>
+            <div className="table-responsive">
+                <table class="table table-hover table-bordered mt-5 ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Product Id</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    {
+                        orders.map(order => <tbody key="order._id">
+                            <tr>
+                                <td>{user.displayName}</td>
+                                <td>{order.userPhone}</td>
+                                <td>{order.productId}</td>
+                                <td>{order.productName}</td>
+                                <td>{order.productPrice}</td>
+                                <td>{order.status}</td>
+                                <td>{order.status === "Confirmed" ? <button className="btn btn-dark" disabled>Confirmed</button> : <button className="btn btn-dark" onClick={() => handleConfirmOrder(order._id)}>Confirm</button>}</td>
+                                <td>{order.status === "Shipped" ? <button className="btn btn-dark" disabled>Shipped</button> : <button className="btn btn-dark" onClick={() => handleConfirmShipping(order._id)}>Shipped</button>}</td>
+                                <td><button className="btn btn-dark" onClick={() => handleDelete(order._id)}>Delete</button></td>
+                            </tr>
+                        </tbody>)
+                    }
+                </table>
             </div>
         </div>
     );

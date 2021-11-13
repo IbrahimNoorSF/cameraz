@@ -5,14 +5,14 @@ const ManageMyOrders = () => {
     const [orders, setOrders] = useState([]);
     const { user } = useAuth();
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://cameraz.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data));
     }, [])
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure to delete');
         if (proceed) {
-            const url = `http://localhost:5000/orders/${id}`;
+            const url = `https://cameraz.herokuapp.com/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -45,6 +45,7 @@ const ManageMyOrders = () => {
                                     <h3 className="card-title fw-bold">{myOrder.productName}</h3>
                                     <p className="card-text fs-5">Product Id: {myOrder.productId}</p>
                                     <p>Status: <span className="p-2 rounded bg-success text-white">{myOrder.status}</span></p>
+                                    <p>Price: <span className="fw-bolder">{myOrder.productPrice}</span></p>
                                     <button className="btn btn-danger btn-lg" onClick={() => handleDelete(myOrder._id)}>Delete</button>
                                 </div>
                             </div>

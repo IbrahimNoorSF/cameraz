@@ -46,10 +46,7 @@ const Footer = () => {
                                     <Link to="/home" className="text-reset">Home</Link>
                                 </p>
                                 <p>
-                                    <Link to="/services" className="text-reset">Services</Link>
-                                </p>
-                                <p>
-                                    <Link to="/about" className="text-reset">About</Link>
+                                    <Link to="/explore" className="text-reset">Explore</Link>
                                 </p>
                                 <p>
                                     <Link to="/contact" className="text-reset">Contact</Link>

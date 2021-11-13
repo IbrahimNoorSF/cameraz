@@ -18,8 +18,10 @@ const Purchase = () => {
 
     const location = useLocation();
     const history = useHistory();
+    // redirecting
+    const redirect_url = location?.state?.from || '/';
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://cameraz.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProductDetails(data))
     }, []);
@@ -30,11 +32,11 @@ const Purchase = () => {
 
     const onSubmit = data => {
         console.log(data);
-        axios.post('http://localhost:5000/orders', data)
+        axios.post('https://cameraz.herokuapp.com/orders', data)
             .then(res => {
                 if (res.data.insertedId) {
-                    history.push('/dashboard/my-orders');
-                    alert('Please Confirm Your Booking On My Orders Page');
+                    alert('Order Placed Successfully');
+                    history.push(redirect_url);
                     reset();
                 }
             }).catch(error => {
@@ -67,12 +69,16 @@ const Purchase = () => {
                         <input type="hidden" {...register("status")} defaultValue="Pending" />
                         <input className="form-control mb-3" readOnly type="text" {...register("productImg")} defaultValue={signleProduct?.imgUrl} />
                         <div className="form-floating mb-3">
-                            <input className="form-control mb-3" type="text" id="product-id" {...register("productId")} defaultValue={signleProduct?._id} placeholder="Product Id" />
+                            <input className="form-control mb-3" readOnly type="text" id="product-id" {...register("productId")} defaultValue={signleProduct?._id} placeholder="Product Id" />
                             <label htmlFor="product-id">Product Id</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input className="form-control mb-3" id="product-name" type="text" {...register("productName")} defaultValue={signleProduct?.productName} placeholder="Product Name" />
+                            <input className="form-control mb-3" readOnly id="product-name" type="text" {...register("productName")} defaultValue={signleProduct?.productName} placeholder="Product Name" />
                             <label htmlFor="product-name">Product Name</label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input className="form-control mb-3" readOnly id="product-price" type="text" {...register("productPrice")} defaultValue={signleProduct?.price} placeholder="Product Price" />
+                            <label htmlFor="product-price">Product Price</label>
                         </div>
                         <input type="text" {...register("userName")} defaultValue={user.displayName} className="form-control mb-3" placeholder="Your Name" />
                         <input type="email" {...register("userEmail")} defaultValue={user.email} className="form-control mb-3" placeholder="Your Email" />
