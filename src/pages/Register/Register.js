@@ -40,7 +40,7 @@ const Register = () => {
             })
             .catch(error => {
                 setErrorMessage(error.message);
-            });
+            })
     }
     return (
         <div>
@@ -64,7 +64,7 @@ const Register = () => {
                         <label className="form-label" htmlFor="form3Example4">Password</label>
                     </div>
                     <p className="text-danger">{errorMessage}</p>
-                    <button type="submit" className="button-login mb-4" onClick={handleSubmitRegistration}>Sign up</button>
+                    <button type="submit" className="btn btn-dark mb-4" onClick={handleSubmitRegistration}>Sign up</button>
                     <div className="text-center">
                         <p>Already Registered? <Link to="/login">Login</Link></p>
                     </div>

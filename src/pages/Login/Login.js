@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import NavBar from '../Shared/NavBar/NavBar';
 
 const Login = () => {
     // state for error
@@ -40,6 +41,7 @@ const Login = () => {
     const redirect_url = location?.state?.from || '/';
     return (
         <div>
+            <NavBar></NavBar>
             <form className="container shadow p-5 rounded mt-5" onSubmit={handleLoginSubmit}>
                 <div className="m-5">
                     <h1 className="text-center mb-4">Please Login</h1>
@@ -53,7 +55,7 @@ const Login = () => {
                         <label className="form-label" htmlFor="form2Example2">Password</label>
                     </div>
                     <p className="text-danger">{errorMessage}</p>
-                    <button type="submit" className="button-login mb-4" onClick={handleLoginButton}>Sign in</button>
+                    <button type="submit" className="btn btn-dark mb-4" onClick={handleLoginButton}>Sign in</button>
                     <div className="text-center">
                         <p>New to CameraZ? <Link to="/register">Register</Link></p>
                     </div>

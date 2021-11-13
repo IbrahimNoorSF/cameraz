@@ -18,13 +18,13 @@ const AddProducts = () => {
     return (
         <div className="w-75 mx-auto mt-5">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1 className="text-center">Add A New Product</h1>
+                <h1 className="text-center">Add A New <span className="fw-bolder">Product</span></h1>
                 <div className="form-floating mb-3">
                     <input type="text" {...register("productName")} className="form-control" id="floatingInput" placeholder="Product Name" required />
                     <label htmlFor="floatingInput">Product Name</label>
                 </div>
                 <div className="form-floating mb-3">
-                    <textarea type="text" {...register("description")} className="form-control" id="floatingDescription" placeholder="Description" required />
+                    <textarea type="text" {...register("description")} style={{ height: "100px" }} className="form-control" id="floatingDescription" placeholder="Description" required />
                     <label htmlFor="floatingDescription">Description</label>
                 </div>
                 <div className="form-floating mb-3">

@@ -1,7 +1,5 @@
 import './App.css';
-import NavBar from './pages/Shared/NavBar/NavBar';
 import Home from './pages/Home/Home';
-import Footer from './pages/Shared/Footer/Footer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Explore from './pages/Explore/Explore';
 import Purchase from './pages/Purchase/Purchase';
@@ -9,14 +7,13 @@ import Login from './pages/Login/Login';
 import AuthProvider from './Context/AuthProvider';
 import PrivateRoute from './pages/Shared/PrivateRoute/PrivateRoute';
 import Register from './pages/Register/Register';
-import AddProducts from './pages/AddProducts/AddProducts';
 import ContactUs from './pages/ContactUs/ContactUs';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <NavBar></NavBar>
         <Switch>
           <Route exact path="/">
             <Home></Home>
@@ -27,7 +24,7 @@ function App() {
           <Route path="/explore">
             <Explore></Explore>
           </Route>
-          <PrivateRoute path="/purchase">
+          <PrivateRoute path="/purchase/:product">
             <Purchase></Purchase>
           </PrivateRoute>
           <Route path="/login">
@@ -36,14 +33,13 @@ function App() {
           <Route path="/register">
             <Register></Register>
           </Route>
-          <Route path="/add-products">
-            <AddProducts></AddProducts>
-          </Route>
+          <PrivateRoute path="/dashboard">
+            <Dashboard></Dashboard>
+          </PrivateRoute>
           <Route path="/contact">
             <ContactUs></ContactUs>
           </Route>
         </Switch>
-        <Footer></Footer>
       </Router>
     </AuthProvider>
   );
