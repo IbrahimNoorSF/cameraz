@@ -9,7 +9,7 @@ const AddReview = () => {
     console.log(user);
     const onSubmit = data => {
         console.log(data);
-        axios.post('https://cameraz.herokuapp.com/reviews', data)
+        axios.post('https://enigmatic-meadow-69142.herokuapp.com/reviews', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Added successfully');

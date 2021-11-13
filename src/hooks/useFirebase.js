@@ -39,7 +39,7 @@ const useFirebase = () => {
 
     // ADMIN CHECKING
     useEffect(() => {
-        fetch(`https://cameraz.herokuapp.com/users/${user.email}`)
+        fetch(`https://enigmatic-meadow-69142.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
@@ -63,7 +63,7 @@ const useFirebase = () => {
     }
     const saveUser = (name, email) => {
         const user = { name, email };
-        axios.post('https://cameraz.herokuapp.com/users', user)
+        axios.post('https://enigmatic-meadow-69142.herokuapp.com/users', user)
             .then(res => {
                 if (res.data.insertedId) {
 

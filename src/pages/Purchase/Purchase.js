@@ -21,7 +21,7 @@ const Purchase = () => {
     // redirecting
     const redirect_url = location?.state?.from || '/';
     useEffect(() => {
-        fetch('https://cameraz.herokuapp.com/products')
+        fetch('https://enigmatic-meadow-69142.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProductDetails(data))
     }, []);
@@ -32,7 +32,7 @@ const Purchase = () => {
 
     const onSubmit = data => {
         console.log(data);
-        axios.post('https://cameraz.herokuapp.com/orders', data)
+        axios.post('https://enigmatic-meadow-69142.herokuapp.com/orders', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Order Placed Successfully');

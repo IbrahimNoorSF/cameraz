@@ -9,7 +9,7 @@ const MakeAdmin = () => {
         setEmail(data.email);
         console.log(data)
         const user = { email };
-        fetch('https://cameraz.herokuapp.com/users/admin', {
+        fetch('https://enigmatic-meadow-69142.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

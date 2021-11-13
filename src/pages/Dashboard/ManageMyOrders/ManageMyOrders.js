@@ -5,14 +5,14 @@ const ManageMyOrders = () => {
     const [orders, setOrders] = useState([]);
     const { user } = useAuth();
     useEffect(() => {
-        fetch('https://cameraz.herokuapp.com/orders')
+        fetch('https://enigmatic-meadow-69142.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data));
     }, [])
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure to delete');
         if (proceed) {
-            const url = `https://cameraz.herokuapp.com/orders/${id}`;
+            const url = `https://enigmatic-meadow-69142.herokuapp.com/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

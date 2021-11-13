@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const AddProducts = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        axios.post('https://cameraz.herokuapp.com/products', data)
+        axios.post('https://enigmatic-meadow-69142.herokuapp.com/products', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Added successfully');

@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react';
 const ManageProducts = () => {
     const [products, setProducts] = useState([])
     useEffect(() => {
-        fetch('https://cameraz.herokuapp.com/products')
+        fetch('https://enigmatic-meadow-69142.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure to delete');
         if (proceed) {
-            const url = `https://cameraz.herokuapp.com/products/${id}`;
+            const url = `https://enigmatic-meadow-69142.herokuapp.com/products/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
