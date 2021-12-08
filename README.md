@@ -1,5 +1,4 @@
-# Assignment 12 🥳
-# <a href="https://assignment-12-62125.web.app/">CameraZ</a> - Your One Stop Solution
+<a href="https://assignment-12-62125.web.app/">CameraZ</a> - Your One Stop Solution
 * You can order cameras
 * You can find cameras
 * You will have your own dashboard
